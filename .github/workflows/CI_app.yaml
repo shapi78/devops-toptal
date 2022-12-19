@@ -15,7 +15,7 @@ jobs:
   release:
     if: ${{ github.ref == 'refs/heads/master' }}
     env:
-      DOCKER_IMAGE: 558860702682.dkr.ecr.us-east-1.amazonaws.com/toptal/app
+      DOCKER_IMAGE: 558860702682.dkr.ecr.us-east-1.amazonaws.com/api
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
