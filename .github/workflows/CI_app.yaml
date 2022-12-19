@@ -21,8 +21,25 @@ jobs:
         with:
           fetch-depth: 0
       - name: Get latest tag
-        run: git checkout ${{ github.ref }} && echo "LATEST_TAG=$(git describe --tags --abbrev=0 | cut -c2-)" >> $GITHUB_ENV
+        run: git checkout ${{ github.ref }} && echo "LATEST_TAG=$(git describe --tags --abbrev=0 | cut -c1-)" >> $GITHUB_ENV
       - name: Print LATEST_TAG
         run: echo ${{ env.LATEST_TAG }}
+      - name: Bump up minor
+        if: ${{ github.ref == 'refs/heads/master' }}
+        env:
+          GIT_NAME: "Github Action"
+          GIT_EMAIL: "shapi78@gmail.com"
+        id: nextversion-master
+        uses: jenkins-x-plugins/jx-release-version@v2.4.13
+        with:
+          previous-version: ${{ env.LATEST_TAG }}
+          next-version: increment.minor
+      - name: Set version environment variable
+        run: echo "VERSION=${{ steps.nextversion-master.output.version }}" >> GITHUB_ENV
+      
+      - name: Print NEXT version
+        run: echo ${{ env.VERSION }}
+        
+        
       
           
