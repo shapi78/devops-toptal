@@ -37,12 +37,12 @@ jobs:
           
       - name: Set version environment variable
         if: ${{ github.ref == 'refs/heads/master' }}
-        run: echo "VERSION=${{ steps.nextversion-master.outputs.version }}" >> GITHUB_ENV
+        run: echo "VERSION=${{ steps.nextversion-master.outputs.version }}" >> $GITHUB_ENV
       
       - name: Print NEXT version
         run: echo ${{ env.VERSION }}
       - name: Prepare docker image
-        run: docker build -t $DOCKER_IMAGE:${{ env.VERSION }} .
+        run: docker build -t $DOCKER_IMAGE:${{ env.VERSION }} app/
         
         
       
