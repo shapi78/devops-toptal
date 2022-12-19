@@ -43,6 +43,16 @@ jobs:
         run: echo ${{ env.VERSION }}
       - name: Prepare docker image
         run: docker build -t $DOCKER_IMAGE:${{ env.VERSION }} api/
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ AWS_SECREY_KEY_ID }}
+          asw-region: ${{ AWS_REGION }}
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+        
         
         
       
