@@ -42,7 +42,7 @@ jobs:
       - name: Print NEXT version
         run: echo ${{ env.VERSION }}
       - name: Prepare docker image
-        run: docker build -t $DOCKER_IMAGE:${{ env.VERSION }} app/
+        run: docker build -t $DOCKER_IMAGE:${{ env.VERSION }} api/
         
         
       
