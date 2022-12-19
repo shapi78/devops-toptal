@@ -1,0 +1,23 @@
+name: App CI
+on:
+  pull_request:
+  
+  push:
+    branches:
+      - master
+      
+concurency:
+  group: ${{ github.ref }}-ci
+  
+jobs:
+  release:
+    if: ${{ github.ref == 'refs/heads/master' }}
+    env:
+      DOCKER_IMAGE: 558860702682.dkr.ecr.us-east-1.amazonaws.com/toptal/app
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses : actions/checkout@v2
+        with:
+          fetch-depth: 0
+          
