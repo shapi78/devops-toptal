@@ -6,7 +6,7 @@ on:
     branches:
       - master
       
-concurency:
+concurrency:
   group: ${{ github.ref }}-ci
   
 jobs:
