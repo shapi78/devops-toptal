@@ -33,7 +33,7 @@ jobs:
         uses: jenkins-x-plugins/jx-release-version@v2.4.13
         with:
           previous-version: ${{ env.LATEST_TAG }}
-          next-version: increment.minor
+          next-version: increment:patch
       - name: Set version environment variable
         run: echo "VERSION=${{ steps.nextversion-master.output.version }}" >> GITHUB_ENV
       
