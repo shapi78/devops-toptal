@@ -53,6 +53,6 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
       - name: Push docker image
-        run: docker push $DOCKER_IMAGE:${{ env.version }}
+        run: docker push $DOCKER_IMAGE:${{ env.VERSION }}
       
           
