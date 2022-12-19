@@ -30,12 +30,14 @@ jobs:
           GIT_NAME: "Github Action"
           GIT_EMAIL: "shapi78@gmail.com"
         id: nextversion-master
-        uses: jenkins-x-plugins/jx-release-version@v2.4.13
+        uses: jenkins-x-plugins/jx-release-version@v2.6.1
         with:
           previous-version: ${{ env.LATEST_TAG }}
-          next-version: increment:patch
+          next-version: increment:minor
+          
       - name: Set version environment variable
-        run: echo "VERSION=${{ steps.nextversion-master.output.version }}" >> GITHUB_ENV
+        if: ${{ github.ref == 'refs/heads/master' }}
+        run: echo "VERSION=${{ steps.nextversion-master.outputs.version }}" >> GITHUB_ENV
       
       - name: Print NEXT version
         run: echo ${{ env.VERSION }}
